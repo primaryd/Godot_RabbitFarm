@@ -1,8 +1,8 @@
 [gd_scene load_steps=52 format=3 uid="uid://04alkewmjp33"]
 
-[ext_resource type="Texture2D" uid="uid://gu08oej0mk1u" path="res://Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Actions.png" id="1_7s2fu"]
+[ext_resource type="Texture2D" uid="uid://gu08oej0mk1u" path="res://Asset/Characters/Basic Charakter Actions.png" id="1_7s2fu"]
 [ext_resource type="Script" path="res://Scene/Character/player/player.gd" id="1_my718"]
-[ext_resource type="Texture2D" uid="uid://bompwjrd2hsyn" path="res://Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Spritesheet.png" id="2_gmg5h"]
+[ext_resource type="Texture2D" uid="uid://bompwjrd2hsyn" path="res://Asset/Characters/Basic Charakter Spritesheet.png" id="2_gmg5h"]
 [ext_resource type="Script" path="res://Script/State_Machine/node_state_machine.gd" id="3_fxgv3"]
 [ext_resource type="Script" path="res://Scene/Character/player/idle.gd" id="4_lkjpa"]
 [ext_resource type="Script" path="res://Scene/Character/player/walk.gd" id="5_1pu0q"]
@@ -398,6 +398,7 @@ radius = 7.0
 height = 16.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_my718")
 current_tool = 3
 
