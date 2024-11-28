@@ -7,10 +7,9 @@ signal interactable_deactived
 
 
 func _on_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
-	
+	interactable_actived.emit()
 
 
 
 func _on_body_exited(body: Node2D) -> void:
-	pass # Replace with function body.
+	interactable_deactived.emit()

@@ -27,7 +27,7 @@ func _ready() -> void:
 
 func _process(delta : float) -> void:
 	if current_node_state:
-		print("Current State: ", current_node_state_name)
+		# print("Current State: ", current_node_state_name)
 		current_node_state._on_process(delta)
 
 

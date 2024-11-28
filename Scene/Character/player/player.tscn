@@ -393,9 +393,8 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u8wjh"]
-radius = 7.0
-height = 16.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_lblgd"]
+radius = 5.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -409,8 +408,8 @@ animation = &"watering_back"
 autoplay = "idle_front"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -9)
-shape = SubResource("CapsuleShape2D_u8wjh")
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_lblgd")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state")]
 script = ExtResource("3_fxgv3")
