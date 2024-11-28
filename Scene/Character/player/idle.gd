@@ -29,6 +29,8 @@ func _on_next_transitions() -> void:
 		transition.emit("Chop")
 	if player.current_tool == DataTypes.Tools.TillGround and GameInputEvents.use_tool():
 		transition.emit("Till")
+	if player.current_tool == DataTypes.Tools.WaterCrops and GameInputEvents.use_tool():
+		transition.emit("Water")
 
 
 func _on_enter() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://04alkewmjp33"]
+[gd_scene load_steps=52 format=3 uid="uid://04alkewmjp33"]
 
 [ext_resource type="Texture2D" uid="uid://gu08oej0mk1u" path="res://Sprout Lands - Sprites - Basic pack/Characters/Basic Charakter Actions.png" id="1_7s2fu"]
 [ext_resource type="Script" path="res://Scene/Character/player/player.gd" id="1_my718"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scene/Character/player/walk.gd" id="5_1pu0q"]
 [ext_resource type="Script" path="res://Scene/Character/player/chop.gd" id="7_ouktm"]
 [ext_resource type="Script" path="res://Scene/Character/player/till.gd" id="8_r4r1e"]
+[ext_resource type="Script" path="res://Scene/Character/player/water.gd" id="9_5g411"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ut3o5"]
 atlas = ExtResource("1_7s2fu")
@@ -354,7 +355,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_10yy5")
 }],
-"loop": true,
+"loop": false,
 "name": &"watering_back",
 "speed": 3.0
 }, {
@@ -365,7 +366,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_453wm")
 }],
-"loop": true,
+"loop": false,
 "name": &"watering_front",
 "speed": 3.0
 }, {
@@ -376,7 +377,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gjb7v")
 }],
-"loop": true,
+"loop": false,
 "name": &"watering_left",
 "speed": 3.0
 }, {
@@ -387,7 +388,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_co2gv")
 }],
-"loop": true,
+"loop": false,
 "name": &"watering_right",
 "speed": 3.0
 }]
@@ -398,12 +399,12 @@ height = 16.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_my718")
-current_tool = 2
+current_tool = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_xjeb8")
-animation = &"tilling_right"
+animation = &"watering_back"
 autoplay = "idle_front"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -431,5 +432,10 @@ animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 
 [node name="Till" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animated_sprite_2d")]
 script = ExtResource("8_r4r1e")
+player = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="Water" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animated_sprite_2d")]
+script = ExtResource("9_5g411")
 player = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
