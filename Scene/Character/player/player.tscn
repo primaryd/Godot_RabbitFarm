@@ -1,8 +1,9 @@
-[gd_scene load_steps=52 format=3 uid="uid://04alkewmjp33"]
+[gd_scene load_steps=54 format=3 uid="uid://04alkewmjp33"]
 
 [ext_resource type="Texture2D" uid="uid://gu08oej0mk1u" path="res://Asset/Characters/Basic Charakter Actions.png" id="1_7s2fu"]
 [ext_resource type="Script" path="res://Scene/Character/player/player.gd" id="1_my718"]
 [ext_resource type="Texture2D" uid="uid://bompwjrd2hsyn" path="res://Asset/Characters/Basic Charakter Spritesheet.png" id="2_gmg5h"]
+[ext_resource type="PackedScene" uid="uid://v7cp3pwadun2" path="res://Scene/Component/hit_component.tscn" id="2_xld52"]
 [ext_resource type="Script" path="res://Script/State_Machine/node_state_machine.gd" id="3_fxgv3"]
 [ext_resource type="Script" path="res://Scene/Character/player/idle.gd" id="4_lkjpa"]
 [ext_resource type="Script" path="res://Scene/Character/player/walk.gd" id="5_1pu0q"]
@@ -10,13 +11,16 @@
 [ext_resource type="Script" path="res://Scene/Character/player/till.gd" id="8_r4r1e"]
 [ext_resource type="Script" path="res://Scene/Character/player/water.gd" id="9_5g411"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ut3o5"]
-atlas = ExtResource("1_7s2fu")
-region = Rect2(0, 192, 48, 48)
+[sub_resource type="CircleShape2D" id="CircleShape2D_m1en1"]
+radius = 4.12311
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vhg8v"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q120p"]
 atlas = ExtResource("1_7s2fu")
-region = Rect2(48, 192, 48, 48)
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6prw"]
+atlas = ExtResource("1_7s2fu")
+region = Rect2(48, 240, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_77rqg"]
 atlas = ExtResource("1_7s2fu")
@@ -174,10 +178,10 @@ region = Rect2(48, 528, 48, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ut3o5")
+"texture": SubResource("AtlasTexture_q120p")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vhg8v")
+"texture": SubResource("AtlasTexture_j6prw")
 }],
 "loop": false,
 "name": &"chopping_back",
@@ -399,13 +403,22 @@ radius = 5.0
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_my718")
-current_tool = 3
+current_tool = 1
+
+[node name="HitComponent" parent="." instance=ExtResource("2_xld52")]
+current_tool = 1
+
+[node name="HitComponentCollisionShape2D" type="CollisionShape2D" parent="HitComponent"]
+shape = SubResource("CircleShape2D_m1en1")
+debug_color = Color(0.78565, 0, 0.163328, 0.42)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_xjeb8")
-animation = &"watering_back"
+animation = &"chopping_back"
 autoplay = "idle_front"
+frame = 1
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
@@ -425,10 +438,11 @@ script = ExtResource("5_1pu0q")
 player = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
 
-[node name="Chop" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animated_sprite_2d")]
+[node name="Chop" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animated_sprite_2d", "hit_component_collision")]
 script = ExtResource("7_ouktm")
 player = NodePath("../..")
 animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+hit_component_collision = NodePath("../../HitComponent/HitComponentCollisionShape2D")
 
 [node name="Till" type="Node" parent="StateMachine" node_paths=PackedStringArray("player", "animated_sprite_2d")]
 script = ExtResource("8_r4r1e")

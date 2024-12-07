@@ -1,4 +1,4 @@
-class_name InteractableConponent
+class_name InteractableComponent
 extends Area2D
 
 signal interactable_actived

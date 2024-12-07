@@ -1,12 +1,12 @@
 extends StaticBody2D
 
-@onready var interactable_conponent: InteractableConponent = $InteractableConponent
+@onready var interactable_component: InteractableComponent = $InteractableComponent
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
-	interactable_conponent.interactable_actived.connect(on_interactable_actived)
-	interactable_conponent.interactable_deactived.connect(on_interactable_deactived)
+	interactable_component.interactable_actived.connect(on_interactable_actived)
+	interactable_component.interactable_deactived.connect(on_interactable_deactived)
 	collision_layer=1
 #.......................................
 #玩家的碰撞层在2，并且与碰撞层1有碰撞。

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scene/House/door.gd" id="1_dm5cu"]
 [ext_resource type="Texture2D" uid="uid://c7hyf6d3jjjax" path="res://Asset/Tilesets/Wooden House.png" id="1_vbtpv"]
-[ext_resource type="PackedScene" uid="uid://cw21kf0t2y5x4" path="res://Scene/Conponent/InteractableConponent.tscn" id="2_fytua"]
+[ext_resource type="PackedScene" uid="uid://cw21kf0t2y5x4" path="res://Scene/Component/InteractableComponent.tscn" id="2_fytua"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1yds8"]
 size = Vector2(11, 27)
@@ -94,10 +94,10 @@ size = Vector2(16, 16)
 [node name="Door" type="StaticBody2D"]
 script = ExtResource("1_dm5cu")
 
-[node name="InteractableConponent" parent="." instance=ExtResource("2_fytua")]
+[node name="InteractableComponent" parent="." instance=ExtResource("2_fytua")]
 position = Vector2(11.8317, 8.47644)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableConponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableComponent"]
 position = Vector2(-11.3317, -7.97644)
 shape = SubResource("RectangleShape2D_1yds8")
 debug_color = Color(0.414542, 0.90213, 3.85046e-07, 0.42)
