@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://l4hxsrxsc0nm"]
+
+[ext_resource type="Texture2D" uid="uid://b2l58f8b86o3p" path="res://Asset/Objects/Basic_Grass_Biom_things.png" id="1_8e1yk"]
+[ext_resource type="Script" path="res://Scene/Component/hurt_component.gd" id="2_0nu41"]
+[ext_resource type="Script" path="res://Scene/Objects/trees/large_tree.gd" id="2_kxceq"]
+[ext_resource type="Script" path="res://Scene/Component/damage_component.gd" id="3_bgojl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fjc6h"]
+radius = 7.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1tn40"]
+radius = 9.0
+
+[node name="LargeTree" type="Sprite2D"]
+texture = ExtResource("1_8e1yk")
+region_enabled = true
+region_rect = Rect2(16, 0, 32, 32)
+script = ExtResource("2_kxceq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 10)
+shape = SubResource("CircleShape2D_fjc6h")
+
+[node name="HurtComponent" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("2_0nu41")
+tool = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtComponent"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_1tn40")
+debug_color = Color(0.889738, 0.276703, 0.450037, 0.42)
+
+[node name="DamageComponent" type="Node2D" parent="."]
+script = ExtResource("3_bgojl")
+max_damage = 6
+
+[connection signal="area_entered" from="HurtComponent" to="HurtComponent" method="_on_area_entered"]
